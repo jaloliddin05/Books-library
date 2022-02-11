@@ -67,3 +67,99 @@ img {
   margin: 0 auto;
   padding: 0 20px;
 }
+
+/*  LOGIN PAGE  */
+.login_main {
+  width: 100vw;
+  height: 100vh;
+  background: url("../images/Login.jpg");
+  background-size: cover;
+}
+.login_container {
+  padding: 198px 490px 0;
+}
+.login_form {
+  position: relative;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.error {
+  position: absolute;
+  top: -90px;
+  left: 0;
+  font-size: 20px;
+  color: red;
+  text-align: center;
+}
+.bookshelter_logo {
+  width: 100%;
+  text-align: center;
+}
+.bookshelter_img {
+  margin-bottom: 50px;
+}
+.username_input,
+.userPassword_input {
+  width: 100%;
+  padding: 13px 50px;
+  margin-bottom: 20px;
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+  font-family: "Montserrat";
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 20px;
+  text-transform: uppercase;
+  background-color: transparent;
+  color: #ffffff;
+  outline: none;
+}
+.userPassword_input {
+  margin-bottom: 45px;
+}
+.user_logo {
+  position: absolute;
+  top: 105px;
+  left: 10px;
+}
+.user_logo::before {
+  content: url("../images/userIcon.svg");
+}
+.lock_logo {
+  position: absolute;
+  top: 175px;
+  left: 10px;
+}
+.lock_logo::before {
+  content: url("../images/lockIcon.svg");
+}
+.login_btn {
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  padding: 13px 123px;
+  margin-bottom: 11px;
+  font-family: "Montserrat";
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #0d75ff;
+}
+.login_btn:hover {
+  background-color: yellow;
+}
+.forgot_password {
+  margin: 0;
+  font-family: "Montserrat";
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/*  HOME PAGE  */

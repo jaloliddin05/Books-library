@@ -296,13 +296,15 @@ button {
   background-color: #f8fafd;
 }
 .books__section_left {
-  width: 318px;
+  display: flex;
+  flex-direction: column;
+  width: 268px !important;
   background-color: #fff;
-  padding: 25px;
+  padding: 20px;
   margin-left: -20px;
 }
 .books_bookmark_list {
-  width: 100%;
+  width: 228px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -363,11 +365,13 @@ button {
   list-style: none;
 }
 .books_card_item {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  min-height: 470px;
   padding: 13px 15px;
-  margin-left: 39px;
+  margin-left: 35px;
   margin-top: 33px;
   background-color: #fff;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
@@ -378,7 +382,12 @@ button {
   background: #f8fafd;
   border-radius: 5px;
 }
+.books_card_img {
+  width: 201px;
+  height: 202px;
+}
 .books_card_name {
+  max-width: 250px;
   margin-top: 19px;
   font-weight: 500;
   font-size: 18px;
@@ -398,9 +407,14 @@ button {
   line-height: 18px;
   color: #757881;
 }
+.books_card_bottom {
+  position: absolute;
+  bottom: 20px;
+  left: 15px;
+}
 .books_card_btn_box {
   width: 100%;
-  margin-top: 10px;
+  margin-bottom: 15px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -437,10 +451,11 @@ button {
   border: none;
   background: #75828a;
   border-radius: 4px;
+  text-decoration: none;
 }
 /*  MODAL  */
 .modal {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   width: 100vw;
@@ -526,6 +541,7 @@ button {
   width: 100%;
 }
 .modal_read_btn {
+  display: inline-block;
   width: 100%;
   font-weight: 500;
   font-size: 18px;
@@ -535,6 +551,8 @@ button {
   background: #75828a;
   border-radius: 4px;
   border: none;
+  text-align: center;
+  text-decoration: none;
 }
 .overly {
   position: fixed;

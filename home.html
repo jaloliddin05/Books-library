@@ -44,7 +44,12 @@
       <!-- HERO -->
       <section class="hero">
         <div class="container hero_container">
-          <div class="result_books_number">Showing 18 Result(s)</div>
+          <div class="result_books_number">
+            Showing <span class="visible_books_number"></span> Result(<span
+              class="all_books_number"
+            ></span
+            >)
+          </div>
           <!-- ORDER BY -->
           <button class="order_by_btn">Order by newest</button>
         </div>
@@ -53,42 +58,15 @@
       <section class="books__section">
         <div class="container books__section_container">
           <div class="books__section_left">
-            <ul class="books_bookmark_list">
-              <li class="bookmark__item">
-                <div class="bookmark_book_info_box">
-                  <h3 class="bookmark_book_name">C++</h3>
-                  <p class="bookmark_book_author">John Doe</p>
-                </div>
-                <div class="bookmark_item_btn_box">
-                  <button class="bookmark_read_book_btn"></button>
-                  <button class="bookmark_book_delete_btn"></button>
-                </div>
-              </li>
-            </ul>
+            <div class="bookmark_section_top">
+              <h2 class="bookmark_heading">Bookmarks</h2>
+              <p class="bookmark_top_desc">
+                If you don’t like to read, you haven’t found the right book
+              </p>
+            </div>
+            <ul class="books_bookmark_list"></ul>
           </div>
-          <ul class="books_list">
-            <li class="books_card_item">
-              <div class="books_card_img_box">
-                <img
-                  src="https://picsum.photos/201/202"
-                  alt=""
-                  width="201"
-                  height="202"
-                  class="books_card_img"
-                />
-              </div>
-              <p class="books_card_name">Python</p>
-              <p class="books_card_author">David M. Beazley</p>
-              <p class="books_card_year">2009</p>
-              <div class="books_card_bottom">
-                <div class="books_card_btn_box">
-                  <button class="bookmark_btn">Bookmark</button>
-                  <button class="more_info_btn">More Info</button>
-                </div>
-                <button class="books_card_read_btn">Read</button>
-              </div>
-            </li>
-          </ul>
+          <ul class="books_list"></ul>
           <div class="modal visually-hidden">
             <div class="modal_top">
               <h3 class="modal_book_name">Python</h3>

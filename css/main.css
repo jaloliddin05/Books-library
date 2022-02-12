@@ -208,6 +208,7 @@ button {
   font-size: 18px;
 }
 .search_input::placeholder {
+  font-family: "Rubik";
   font-weight: normal;
   font-size: 13px;
   line-height: 15px;
@@ -298,10 +299,24 @@ button {
 .books__section_left {
   display: flex;
   flex-direction: column;
-  width: 268px !important;
+  width: 268px;
   background-color: #fff;
   padding: 20px;
   margin-left: -20px;
+}
+.bookmark_section_top {
+  margin-bottom: 25px;
+}
+.bookmark_heading {
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 28px;
+  margin-bottom: 5px;
+}
+.bookmark_top_desc {
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 155.6%;
 }
 .books_bookmark_list {
   width: 228px;
@@ -348,6 +363,7 @@ button {
   background: url("../images/bookMarkReadIcon.svg");
   background-position: center;
   border: none;
+  text-decoration: none;
 }
 .bookmark_book_delete_btn {
   display: inline-block;
@@ -392,8 +408,11 @@ button {
   font-weight: 500;
   font-size: 18px;
   line-height: 21px;
+  max-height: 60px;
+  overflow: auto;
 }
 .books_card_author {
+  max-width: 250px;
   font-family: "Noto Sans";
   font-weight: 500;
   font-size: 13px;
@@ -561,4 +580,55 @@ button {
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.7);
+}
+
+/*  DARK MODE  */
+
+.dark .books__section_left {
+  background-color: #000;
+}
+.dark .bookmark_heading {
+  color: white;
+}
+.dark .bookmark_top_desc {
+  color: white;
+}
+.dark .books_card_item {
+  background-color: #000;
+}
+.dark .site_header_container {
+  background-color: #000;
+}
+.dark .hero_container {
+  background-color: #000;
+}
+
+.dark .dark_mode {
+  width: 23px;
+  height: 23px;
+  background: url("../images/night-mode.png");
+  background-size: cover;
+}
+.dark .result_books_number {
+  color: white;
+}
+.dark .books__section_container {
+  border-right: 1px solid black;
+}
+.dark .more_info_btn {
+  background-color: #0d75ff;
+  color: white;
+}
+.dark .books_card_year {
+  color: white;
+}
+.dark .books_card_name {
+  color: white;
+}
+.dark .books_card_author {
+  color: white;
+}
+
+.dark .book_library_img path {
+  fill: white;
 }

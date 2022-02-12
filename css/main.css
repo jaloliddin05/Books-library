@@ -526,11 +526,6 @@ button {
   justify-content: space-between;
   padding: 45px 35px 45px 45px;
 }
-.modal_book_img_box {
-}
-.modal_book_img {
-  /* margin-right: 50px; */
-}
 .modal_desc {
   max-width: 500px;
   font-weight: normal;

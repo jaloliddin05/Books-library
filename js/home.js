@@ -85,7 +85,6 @@ let getInfoBooks = async function (bookname) {
     let bookObj = await response?.json();
     renderBooks(bookObj, elBooksList);
     renderPagenitionBtn(bookObj);
-    console.log(bookObj);
   } catch (err) {
     elAllBooksNumber.textContent = "0";
     elVisibleBooksNumber.textContent = "0";

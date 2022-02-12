@@ -17,6 +17,7 @@ let elModalReadBtn = document.querySelector(".modal_read_btn");
 let elOverly = document.querySelector(".overly");
 let elVisibleBooksNumber = document.querySelector(".visible_books_number");
 let elAllBooksNumber = document.querySelector(".all_books_number");
+let elLogoImg = document.querySelector(".book_library_img");
 let fetchedArray;
 //................................................................
 let API_URL = `https://www.googleapis.com/books/v1/volumes?q=`;
@@ -73,9 +74,13 @@ const renderBooks = function (arr, place) {
 };
 //  FETCHING API
 let getInfoBooks = async function (bookname) {
-  let response = await fetch(API_URL + bookname);
-  let bookObj = await response?.json();
-  renderBooks(bookObj, elBooksList);
+  try {
+    let response = await fetch(API_URL + bookname);
+    let bookObj = await response?.json();
+    renderBooks(bookObj, elBooksList);
+  } catch (err) {
+    console.log("hatolik bor");
+  }
 };
 getInfoBooks("python");
 
@@ -118,7 +123,6 @@ elBooksList.addEventListener("click", function (evt) {
     });
   }
 });
-
 //  GETTING INPUT VALUE
 elSearchInput.addEventListener("keyup", function () {
   search_item = elSearchInput.value;
@@ -130,7 +134,7 @@ elSearchInput.addEventListener("keyup", function () {
   }
 });
 // BOOKMARK RENDER
-let bookmarkArray = [];
+let bookmarkArray = JSON.parse(window.localStorage.getItem("bookmark")) || [];
 
 let renderBookmark = function (arr, place) {
   elBookmarkList.innerHTML = null;
@@ -139,11 +143,17 @@ let renderBookmark = function (arr, place) {
         <li class="bookmark__item">
         <div class="bookmark_book_info_box">
           <h3 class="bookmark_book_name">${book.volumeInfo.title}</h3>
-          <p class="bookmark_book_author">John Doe</p>
+          <p class="bookmark_book_author">${book.volumeInfo?.authors?.join(
+            ", "
+          )}</p>
         </div>
         <div class="bookmark_item_btn_box">
-          <a href=${book.volumeInfo.previewLink} target="blank" class="bookmark_read_book_btn"></a>
-          <button class="bookmark_book_delete_btn" data-remove-Bookmark-Id=${book.id}></button>
+          <a href=${
+            book.volumeInfo.previewLink
+          } target="blank" class="bookmark_read_book_btn"></a>
+          <button class="bookmark_book_delete_btn" data-remove-Bookmark-Id=${
+            book.id
+          }></button>
         </div>
       </li>
         `;
@@ -160,6 +170,7 @@ elBooksList.addEventListener("click", function (evt) {
         !bookmarkArray.includes(book)
       ) {
         bookmarkArray.push(book);
+        window.localStorage.setItem("bookmark", JSON.stringify(bookmarkArray));
       }
     });
     renderBookmark(bookmarkArray, elBookmarkList);
@@ -172,6 +183,7 @@ elBookmarkList.addEventListener("click", function (evt) {
       (book) => evt.target.dataset.removeBookmarkId == book.id
     );
     bookmarkArray.splice(removedBookmarkIndex, 1);
+    window.localStorage.setItem("bookmark", JSON.stringify(bookmarkArray));
     renderBookmark(bookmarkArray, elBookmarkList);
   }
 });
@@ -190,3 +202,45 @@ elOrderByBtn.addEventListener("click", function () {
 elDarkModeBtn.addEventListener("click", function () {
   document.body.classList.toggle("dark");
 });
+
+//  PAGENITION
+
+// if (page === 1) {
+//   elPrevBtn.disabled = true;
+// } else {
+//   elPrevBtn.disabled = false;
+// }
+
+// const lastItemCount = Math.ceil(data.totalResults / 10);
+
+// if (page === lastItemCount) {
+//   elNextBtn.disabled = true;
+// } else {
+//   elNextBtn.disabled = false;
+// }
+
+// elPagination.innerHTML = null;
+
+// for (let i = 1; i <= lastItemCount; i++) {
+//   const newPaginationBtn = document.createElement("li");
+
+//   newPaginationBtn.textContent = i;
+
+//   newPaginationBtn.classList.add("page-link");
+
+//   elPagination.appendChild(newPaginationBtn);
+// }
+
+// const selectedPagination = document.querySelectorAll(".pagination li");
+
+// selectedPagination.forEach((item) => {
+//   item.addEventListener("click", function () {
+//     const pageNumber = Number(item.innerHTML);
+
+//     page = pageNumber;
+
+//     elList.innerHTML = null;
+
+//     getMovies();
+//   });
+// });

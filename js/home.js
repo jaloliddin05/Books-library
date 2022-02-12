@@ -22,6 +22,7 @@ let elLogoImg = document.querySelector(".book_library_img");
 let elPrevPageBtn = document.querySelector(".prev_pagenition_btn");
 let elPagenitionList = document.querySelector(".pagenition_btns_block");
 let elNextPageBtn = document.querySelector(".next_pagenition_btn");
+let loder = document.querySelector(".loading");
 let fetchedArray;
 //................................................................
 let API_URL = `https://www.googleapis.com/books/v1/volumes?q=`;
@@ -266,3 +267,9 @@ elPrevPageBtn.addEventListener("click", function () {
   page--;
   getInfoBooks(search_item + `&startIndex=${page}`);
 });
+
+// loader
+
+setTimeout(() => {
+  loder.classList.add("visually-hidden");
+}, 2000);

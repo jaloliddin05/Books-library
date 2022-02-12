@@ -178,6 +178,8 @@ button {
   display: flex;
   align-items: center;
   padding: 10px 20px;
+  border-left: 1px solid rgba(0, 0, 0, 0.15);
+  border-right: 1px solid rgba(0, 0, 0, 0.15);
 }
 .book_library_logo {
   display: inline-block;
@@ -260,8 +262,12 @@ button {
   align-items: center;
   padding: 11px 20px;
   background: #ffffff;
-  border-top: 1px solid rgba(0, 0, 0, 0.15);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+.result_books_isFinded {
+  margin-left: 50px;
+  font-size: 22px;
+  color: red;
 }
 .result_books_number {
   margin-left: 287px;
@@ -306,6 +312,8 @@ button {
   background-color: #fff;
   padding: 20px;
   margin-left: -20px;
+  border-left: 1px solid rgba(0, 0, 0, 0.15);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }
 .bookmark_section_top {
   margin-bottom: 25px;
@@ -380,6 +388,7 @@ button {
   align-items: flex-start;
   flex-wrap: wrap;
   list-style: none;
+  padding-bottom: 20px;
 }
 .books_card_item {
   position: relative;
@@ -583,13 +592,22 @@ button {
   background-color: rgba(0, 0, 0, 0.7);
 }
 /*  PAGENITION  */
+.pagenition_container {
+  display: flex;
+  align-items: center;
+  margin-top: 40px;
+  justify-content: center;
+  padding-bottom: 40px;
+}
 .pagenition_box {
   display: flex;
   align-items: center;
 }
-.prev_pagenition_btn {
+.prev_pagenition_btn,
+.next_pagenition_btn {
   display: inline-block;
-  padding: 15px;
+  padding: 8px;
+  font-size: 18px;
   background: #919eab;
   opacity: 0.5;
   border-radius: 4px;
@@ -598,6 +616,28 @@ button {
   display: flex;
   align-items: center;
   padding: 10px 20px;
+  margin: 0 20px;
+  max-width: 500px;
+  overflow-x: auto;
+}
+/* width */
+.pagenition_btns_block::-webkit-scrollbar {
+  height: 5px;
+}
+
+/* Track */
+.pagenition_btns_block::-webkit-scrollbar-track {
+  background: rgb(223, 215, 215);
+}
+
+/* Handle */
+.pagenition_btns_block::-webkit-scrollbar-thumb {
+  background: grey;
+}
+
+/* Handle on hover */
+.pagenition_btns_block::-webkit-scrollbar-thumb:hover {
+  background: grey;
 }
 .pagenition_btn {
   display: inline-block;
@@ -610,9 +650,9 @@ button {
 .pagenition_btn + .pagenition_btn {
   margin-left: 10px;
 }
-.next_pagenition_btn {
+.pagenition_btn:active {
+  background-color: dodgerblue;
 }
-
 /*  DARK MODE  */
 
 .dark .books__section_left {

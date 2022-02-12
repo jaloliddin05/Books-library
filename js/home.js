@@ -3,6 +3,7 @@ let elSearchInput = document.querySelector(".search_input");
 let elDarkModeBtn = document.querySelector(".dark_mode");
 let elLogoutBtn = document.querySelector(".log_out");
 let elNumberBooks = document.querySelector(".result_books_number");
+let elBookIsFinded = document.querySelector(".result_books_isFinded");
 let elOrderByBtn = document.querySelector(".order_by_btn");
 let elBookmarkList = document.querySelector(".books_bookmark_list");
 let elBooksList = document.querySelector(".books_list");
@@ -18,10 +19,14 @@ let elOverly = document.querySelector(".overly");
 let elVisibleBooksNumber = document.querySelector(".visible_books_number");
 let elAllBooksNumber = document.querySelector(".all_books_number");
 let elLogoImg = document.querySelector(".book_library_img");
+let elPrevPageBtn = document.querySelector(".prev_pagenition_btn");
+let elPagenitionList = document.querySelector(".pagenition_btns_block");
+let elNextPageBtn = document.querySelector(".next_pagenition_btn");
 let fetchedArray;
 //................................................................
 let API_URL = `https://www.googleapis.com/books/v1/volumes?q=`;
 let search_item;
+let page = 1;
 //...........................................
 //  GET YEAR
 const getYear = (time) => new Date(time).getFullYear();
@@ -78,8 +83,12 @@ let getInfoBooks = async function (bookname) {
     let response = await fetch(API_URL + bookname);
     let bookObj = await response?.json();
     renderBooks(bookObj, elBooksList);
+    renderPagenitionBtn(bookObj);
+    console.log(bookObj);
   } catch (err) {
-    console.log("hatolik bor");
+    elAllBooksNumber.textContent = "0";
+    elVisibleBooksNumber.textContent = "0";
+    elBookIsFinded.textContent = "Kitob topilmadi!";
   }
 };
 getInfoBooks("python");
@@ -128,10 +137,12 @@ elSearchInput.addEventListener("keyup", function () {
   search_item = elSearchInput.value;
   if (search_item != "") {
     getInfoBooks(search_item);
+    elBookIsFinded.textContent = "";
   } else {
     elAllBooksNumber.textContent = "0";
     elVisibleBooksNumber.textContent = "0";
   }
+  page = 1;
 });
 // BOOKMARK RENDER
 let bookmarkArray = JSON.parse(window.localStorage.getItem("bookmark")) || [];
@@ -204,43 +215,54 @@ elDarkModeBtn.addEventListener("click", function () {
 });
 
 //  PAGENITION
+elPrevPageBtn.disabled = true;
+let renderPagenitionBtn = function (page) {
+  if (page === 1) {
+    elPrevPageBtn.disabled = true;
+  } else {
+    elPrevPageBtn.disabled = false;
+  }
 
-// if (page === 1) {
-//   elPrevBtn.disabled = true;
-// } else {
-//   elPrevBtn.disabled = false;
-// }
+  const lastItemCount = Math.ceil(page.totalItems / 10);
 
-// const lastItemCount = Math.ceil(data.totalResults / 10);
+  if (page === lastItemCount) {
+    elNextPageBtn.disabled = true;
+  } else {
+    elNextPageBtn.disabled = false;
+  }
 
-// if (page === lastItemCount) {
-//   elNextBtn.disabled = true;
-// } else {
-//   elNextBtn.disabled = false;
-// }
+  elPagenitionList.innerHTML = null;
 
-// elPagination.innerHTML = null;
+  for (let i = 1; i <= lastItemCount; i++) {
+    const newPaginationBtn = document.createElement("button");
 
-// for (let i = 1; i <= lastItemCount; i++) {
-//   const newPaginationBtn = document.createElement("li");
+    newPaginationBtn.textContent = i;
 
-//   newPaginationBtn.textContent = i;
+    newPaginationBtn.classList.add("pagenition_btn");
 
-//   newPaginationBtn.classList.add("page-link");
+    elPagenitionList.appendChild(newPaginationBtn);
+  }
 
-//   elPagination.appendChild(newPaginationBtn);
-// }
+  const selectedPagination = document.querySelectorAll(
+    ".pagenition_btns_block button"
+  );
+  console.log(page);
+  selectedPagination.forEach((item) => {
+    item.addEventListener("click", function () {
+      const pageNumber = Number(item.innerHTML);
 
-// const selectedPagination = document.querySelectorAll(".pagination li");
+      page = pageNumber;
 
-// selectedPagination.forEach((item) => {
-//   item.addEventListener("click", function () {
-//     const pageNumber = Number(item.innerHTML);
+      getInfoBooks(search_item + `&startIndex=${page}`);
+    });
+  });
+};
 
-//     page = pageNumber;
-
-//     elList.innerHTML = null;
-
-//     getMovies();
-//   });
-// });
+elNextPageBtn.addEventListener("click", function () {
+  page++;
+  getInfoBooks(search_item + `&startIndex=${page}`);
+});
+elPrevPageBtn.addEventListener("click", function () {
+  page--;
+  getInfoBooks(search_item + `&startIndex=${page}`);
+});
